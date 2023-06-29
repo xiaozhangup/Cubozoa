@@ -28,9 +28,10 @@ object Maintenance {
 
     @Awake(LifeCycle.ENABLE)
     fun regCommand() {
-        command("maintenance", permission = "maintenance.control") {
+        command("maintenance") {
             dynamic(optional = true) {
                 execute<ProxyCommandSender> { sender, _, arg ->
+                    if (!sender.hasPermission("maintenance.control")) return@execute
                     maintenance = !maintenance
                     note = arg
                     if (maintenance) {
@@ -43,6 +44,7 @@ object Maintenance {
             }
 
             execute<ProxyCommandSender> { sender, _, arg ->
+                if (!sender.hasPermission("maintenance.control")) return@execute
                 maintenance = !maintenance
                 note = arg
                 if (maintenance) {
