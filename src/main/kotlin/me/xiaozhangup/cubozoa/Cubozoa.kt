@@ -16,6 +16,8 @@ import net.kyori.adventure.text.format.TextColor
 import net.kyori.adventure.text.format.TextDecoration
 import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
 import taboolib.common.LifeCycle
+import taboolib.common.env.RuntimeDependencies
+import taboolib.common.env.RuntimeDependency
 import taboolib.common.platform.Awake
 import taboolib.common.platform.Plugin
 import taboolib.common.platform.ProxyCommandSender
@@ -25,10 +27,13 @@ import taboolib.common5.cbyte
 import taboolib.platform.VelocityPlugin
 import java.nio.charset.StandardCharsets
 
-
+@RuntimeDependencies(
+    RuntimeDependency(value = "net.kyori:adventure-text-minimessage:4.12.0")
+)
 object Cubozoa : Plugin() {
 
     val plugin by lazy { VelocityPlugin.getInstance() }
+    val server by lazy { plugin.server }
 
     override fun onEnable() {
         info("Maintenance mode: $maintenance")

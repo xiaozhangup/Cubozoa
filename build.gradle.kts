@@ -19,7 +19,8 @@ repositories {
 }
 
 dependencies {
-    compileOnly("com.velocitypowered:velocity-api:1.1.8")
+    compileOnly("com.velocitypowered:velocity-api:3.1.1")
+    compileOnly("net.kyori:adventure-text-minimessage:4.12.0")
     compileOnly(kotlin("stdlib"))
     compileOnly(fileTree("libs"))
 }
